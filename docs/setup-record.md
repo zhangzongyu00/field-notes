@@ -22,9 +22,9 @@
 
 ## 发布验证
 
-| 入口 | 实际提交 | Actions | 结果 |
-| --- | --- | --- | --- |
-| 本地初始化并 push main | `87c79dca94a24f0777aafb7e88330868c4b5811c` | [42993066195](https://github.com/zhangzongyu00/field-notes/actions/runs/42993066195) | build、deploy 成功，线上首页和文章正常 |
+| 入口                       | 实际提交                                   | Actions                                                                              | 结果                                             |
+| -------------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| 本地初始化并 push main     | `87c79dca94a24f0777aafb7e88330868c4b5811c` | [42993066195](https://github.com/zhangzongyu00/field-notes/actions/runs/42993066195) | build、deploy 成功，线上首页和文章正常           |
 | Safari 网页编辑并提交 main | `2eb95d2797c0bc52d5c388497140a32d0a5e969b` | [42993770224](https://github.com/zhangzongyu00/field-notes/actions/runs/42993770224) | build、deploy 成功，线上关于页出现“持续更新”段落 |
 
 本地已用 `git pull --ff-only` 同步网页提交，验证两种编辑方式可交替使用。
@@ -37,19 +37,23 @@
 
 以下截图都来自真实操作或真实页面，位于 `src/assets/images/rebuilding-blog/`：
 
-| 文件 | 对应操作 |
-| --- | --- |
-| `01-theme-preview-in-safari.png` | 查看原主题演示 |
-| `03-create-repository-form.png` | 新仓库名称与 Public 选项 |
-| `04-repository-created.png` | 新仓库创建结果 |
-| `05-pages-source-github-actions.png` | Pages 发布源设为 GitHub Actions |
-| `06-local-blog-preview.png` | 本地构建后的首页 |
-| `07-repository-files.png` | 初始化后的仓库目录 |
-| `08-first-deployment-success.png` | 本地 push 触发的首次发布成功 |
-| `09-live-blog-homepage.png` | 线上博客首页 |
-| `10-edit-about-in-github.png` | Safari 里实际编辑 about.md |
-| `11-commit-directly-to-main.png` | 网页直接提交到 main |
-| `12-browser-update-deployment-success.png` | 网页提交触发的发布成功 |
-| `13-live-about-after-browser-edit.png` | 线上关于页出现新增段落 |
+| 文件                                       | 对应操作                                |
+| ------------------------------------------ | --------------------------------------- |
+| `01-theme-preview-in-safari.png`           | 查看原主题演示                          |
+| `02-device-activation-complete.png`        | 用户补充的 Device Activation 授权成功页 |
+| `03-create-repository-form.png`            | 新仓库名称与 Public 选项                |
+| `04-repository-created.png`                | 新仓库创建结果                          |
+| `05-pages-source-github-actions.png`       | Pages 发布源设为 GitHub Actions         |
+| `06-local-blog-preview.png`                | 本地构建后的首页                        |
+| `07-repository-files.png`                  | 初始化后的仓库目录                      |
+| `08-first-deployment-success.png`          | 本地 push 触发的首次发布成功            |
+| `09-live-blog-homepage.png`                | 线上博客首页                            |
+| `10-edit-about-in-github.png`              | Safari 里实际编辑 about.md              |
+| `11-commit-directly-to-main.png`           | 网页直接提交到 main                     |
+| `12-browser-update-deployment-success.png` | 网页提交触发的发布成功                  |
+| `13-live-about-after-browser-edit.png`     | 线上关于页出现新增段落                  |
+| `15-first-post-card-user-capture.png`      | 用户补充的首次上线文章卡片              |
 
-截图中的序号保留实际操作顺序。授权页未成功截图，因此不补造第 02 张。
+截图中的序号保留操作阶段。授权页当时未成功截图，随后用户提供真实成功页，作为第 02 张补入；用户提供的文章卡片作为第 15 张补入。临时设备码和访问令牌没有进入公开材料。
+
+使用说明已补充 Device Activation 的含义、新电脑登录、日常发布、预览和仓库图片的处理方式；首篇文章内链接到这份完整文档。

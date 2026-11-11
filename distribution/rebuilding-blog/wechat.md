@@ -20,6 +20,12 @@
 
 GitHub CLI 的设备授权和 Safari 的网页登录互相独立。终端需要完成 CLI 授权，才能以自己的账号操作。
 
+Device Activation 是让浏览器确认终端这次登录：输入临时代码并授权后，CLI 保存访问凭据。它不会把仓库绑定到某台电脑；新电脑重新登录同一账号即可，网页写作则只需要浏览器登录。
+
+配图：`../../src/assets/images/rebuilding-blog/02-device-activation-complete.png`
+
+图注：用户补充的真实授权成功页。
+
 配图：`../../src/assets/images/rebuilding-blog/04-repository-created.png`
 
 图注：新仓库创建成功。文章和截图随后作为源码一起提交。
@@ -81,6 +87,8 @@ git push origin main
 ## 把目录围绕内容组织
 
 文章母稿放在 `src/content/posts/`，每篇截图放在 `src/assets/images/<文章标识>/`。
+
+截图原图也放在 GitHub 仓库，没有使用外部图床。Astro 构建时生成优化后的 WebP，随页面发布到 GitHub Pages，读者从博客自己的地址加载图片。
 
 目前文章先平铺，主题用标签表达，时间用 `pubDatetime` 记录，不急着建立复杂分类。文件名作为稳定标识，关联文章地址、截图和平台稿；发布后不随意改文件名或移动目录。
 

@@ -28,6 +28,8 @@
 
 文件名保持稳定，分类先用标签，不急着搞复杂目录。
 
+截图原图和文章一起保存在 GitHub 仓库，构建后生成 WebP 随博客发布，没有使用外部图床。换电脑也能继续维护，新电脑重新登录同一 GitHub 账号即可。
+
 “唯一源头”也有一个边界：博客更新后，已经发出去的平台内容不会自动更新。更正先回母稿，再同步平台稿。
 
 适合想写技术笔记、工具体验，又想保留完整内容和修改历史的人。配图就是这次实际操作记录。
@@ -40,13 +42,13 @@
 
 发布前按当前编辑器要求处理图片和篇幅；保留真实操作截图。
 
-| 图 | 来源 | 配图文字 |
-| --- | --- | --- |
-| 1 | `09-live-blog-homepage.png` | 折腾笔记：提交文章，博客自动更新 |
-| 2 | `01-theme-preview-in-safari.png` | 先看演示，再选主题 |
-| 3 | `04-repository-created.png` | 新建独立仓库 field-notes |
-| 4 | `05-pages-source-github-actions.png` | Pages 发布来源：GitHub Actions |
-| 5 | `08-first-deployment-success.png` | 构建成功 → 部署上线 |
-| 6 | `11-commit-directly-to-main.png` | 网页提交和本地 push 都能自动更新 |
+| 图  | 来源                                 | 配图文字                         |
+| --- | ------------------------------------ | -------------------------------- |
+| 1   | `09-live-blog-homepage.png`          | 折腾笔记：提交文章，博客自动更新 |
+| 2   | `01-theme-preview-in-safari.png`     | 先看演示，再选主题               |
+| 3   | `04-repository-created.png`          | 新建独立仓库 field-notes         |
+| 4   | `05-pages-source-github-actions.png` | Pages 发布来源：GitHub Actions   |
+| 5   | `08-first-deployment-success.png`    | 构建成功 → 部署上线              |
+| 6   | `11-commit-directly-to-main.png`     | 网页提交和本地 push 都能自动更新 |
 
 图片位于 `../../src/assets/images/rebuilding-blog/`。图中文字是排版建议；不要把它当作软件界面的原始文字。

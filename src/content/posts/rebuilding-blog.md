@@ -2,7 +2,7 @@
 title: "重新搭一个自己的博客：GitHub Pages 自动发布与 Markdown 写作"
 description: "从选择 AstroPaper、新建仓库到自动发布，把博客作为公众号和小红书内容的统一母稿。"
 pubDatetime: 2026-11-11T08:00:00Z
-modDatetime: 2026-11-11T09:17:00Z
+modDatetime: 2026-11-11T09:28:44Z
 featured: true
 draft: false
 tags:
@@ -43,6 +43,35 @@ tags:
 ## 2. 新建公开仓库
 
 GitHub CLI 的授权和 Safari 的网页登录是两件事。完成 CLI 设备授权后，才能在终端以自己的账号操作仓库；临时设备码和令牌不进入截图素材。
+
+### Device Activation 是什么，换电脑还能用吗
+
+**可以换电脑继续维护同一个博客。仓库属于 GitHub 账号，设备授权不会把仓库绑定到某台电脑的硬件上。**
+
+`Device Activation` 是 GitHub 给命令行工具提供的登录确认流程：
+
+1. 在终端运行 `gh auth login`，CLI 向 GitHub 请求一次性临时代码。
+2. 在浏览器打开 `https://github.com/login/device`，输入代码，确认账号和授权。
+3. CLI 获得访问凭据，保存在发起登录的那台电脑上，之后用凭据操作 GitHub。
+
+浏览器只是帮终端完成登录确认，也可以在另一台设备的浏览器里确认。代码用于对应这次登录请求，不是电脑的永久设备编号。GitHub 文档说明设备码默认 15 分钟过期；等待超时后需要重新发起登录，完成授权后的访问凭据与这个临时代码是两回事。
+
+![用户补充的 GitHub Device Activation 授权成功截图](@/assets/images/rebuilding-blog/02-device-activation-complete.png)
+
+截图里的 “Your device is now connected” 表示这次 CLI 登录已获准。这次 macOS 上的 `gh auth status` 显示凭据存储在系统钥匙串（keyring）。
+
+换电脑时，直接网页写文章只需要在新浏览器登录 GitHub；要在新电脑的终端推送，则在新电脑安装 GitHub CLI 并重新登录同一账号：
+
+```bash
+gh auth login --hostname github.com --git-protocol https --web --scopes workflow
+gh auth status
+gh auth setup-git
+git clone https://github.com/zhangzongyu00/field-notes.git
+```
+
+`gh auth setup-git` 让普通 `git push` 使用 CLI 的认证信息，会设置 Git 的凭据助手。`workflow` 权限用于以后修改仓库内的 GitHub Actions 工作流。不同电脑各自登录即可，不需要搬运旧电脑的令牌，也不用重新建立仓库或 Pages。
+
+### 创建仓库
 
 新仓库名为 `field-notes`，可见性选 Public。技术文章和图片也会随源码公开。
 
@@ -192,6 +221,42 @@ git push origin main
 
 Astro 会处理图片路径和尺寸。用 `pnpm dev` 预览正文，用 `pnpm build` 后的 `pnpm preview` 检查全文搜索。
 
+### 完整使用说明
+
+另有一份持续维护的 [博客使用说明文档](https://github.com/zhangzongyu00/field-notes/blob/main/docs/writing-and-publishing.md)，包含网页写作、本地写作、新电脑认证、文章字段、图片上传、平台分发和发布失败的处理。
+
+日常使用可以按这四步：
+
+1. 网页编辑文章，或者本地先拉取最新版本再写作。
+2. 图片和正文一起提交，发布文章时设置 `draft: false`。
+3. 提交到 `main`；本地还需要 `git push origin main`。
+4. 到 Actions 确认 `build` 和 `deploy` 成功，再打开博客核对内容。
+
+### 截图存在图床还是仓库
+
+**本次没有使用外部图床。原始 PNG 截图和文章一起提交到 GitHub 仓库。**
+
+本篇的图片源文件放在：
+
+```text
+src/assets/images/rebuilding-blog/
+├── 02-device-activation-complete.png
+├── 08-first-deployment-success.png
+└── 15-first-post-card-user-capture.png
+```
+
+Markdown 引用本地源文件。Astro 在 Actions 构建时生成优化后的 WebP，放入 `dist/_astro/`；部署后，读者从这个博客自己的 GitHub Pages 地址 `/field-notes/_astro/...webp` 加载图片。
+
+```text
+原始截图与母稿（GitHub 仓库）
+            ↓ Actions / Astro 构建
+优化后的图片与页面（dist）
+            ↓ GitHub Pages 部署
+读者访问博客页面与图片
+```
+
+仓库保存原图和版本历史，Pages 提供网页实际加载的优化图片。这两份是源文件与构建产物的关系，内容修改先回到源文件。公众号、小红书发布时从同一批原图取素材，再上传到各平台自己的编辑器。
+
 ## 实际发布验证
 
 两种入口都做了真实操作，没有只检查配置文件。
@@ -201,6 +266,10 @@ Astro 会处理图片路径和尺寸。用 `pnpm dev` 预览正文，用 `pnpm b
 ![本地推送触发的首次 Actions 构建与部署都成功](@/assets/images/rebuilding-blog/08-first-deployment-success.png)
 
 ![首次部署后的线上折腾笔记首页](@/assets/images/rebuilding-blog/09-live-blog-homepage.png)
+
+![用户补充的首次上线文章卡片截图](@/assets/images/rebuilding-blog/15-first-post-card-user-capture.png)
+
+这张是用户补充的初版文章卡片截图；其中日期保留当时的显示形式，当前站点已改为中文日期。
 
 **网页提交：** 在 Safari 打开 GitHub 的 `about.md` 编辑器，添加“持续更新”段落，点击 **Commit changes**，选择直接提交到 `main`。
 
@@ -232,3 +301,5 @@ Astro 会处理图片路径和尺寸。用 `pnpm dev` 预览正文，用 `pnpm b
 - [配置 GitHub Pages 发布源](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 - [Astro 官方 GitHub Pages 部署指南](https://docs.astro.build/en/guides/deploy/github/)
 - [AstroPaper 源码与许可](https://github.com/satnaing/astro-paper)
+- [GitHub CLI 的登录与凭据保存说明](https://cli.github.com/manual/gh_auth_login)
+- [GitHub 官方 Device flow 说明](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps#device-flow)
