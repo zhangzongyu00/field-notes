@@ -18,3 +18,7 @@ description: "关于折腾笔记，以及这里的内容如何整理和分享。
 本站使用 [Astro](https://astro.build/) 和 [AstroPaper](https://github.com/satnaing/astro-paper)，由 GitHub Actions 构建并部署到 GitHub Pages。支持中文搜索、标签、归档、RSS 订阅和明暗模式。
 
 [仓库](https://github.com/zhangzongyu00/field-notes) 保存站点代码、文章和修改历史。主题代码保留原 MIT 许可；文章和截图的使用约定见仓库 README。
+
+## 持续更新
+
+这份笔记可以在浏览器里编辑，也可以在本地维护。每次提交后，站点会自动更新。
