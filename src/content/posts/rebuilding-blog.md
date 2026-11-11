@@ -2,6 +2,7 @@
 title: "重新搭一个自己的博客：GitHub Pages 自动发布与 Markdown 写作"
 description: "从选择 AstroPaper、新建仓库到自动发布，把博客作为公众号和小红书内容的统一母稿。"
 pubDatetime: 2026-11-11T08:00:00Z
+modDatetime: 2026-11-11T09:17:00Z
 featured: true
 draft: false
 tags:
@@ -52,6 +53,8 @@ GitHub CLI 的授权和 Safari 的网页登录是两件事。完成 CLI 设备�
 这次实际通过 `gh repo create` 创建仓库。表单截图用于说明名称和可见性，创建结果以新仓库页面为准。
 
 然后取 AstroPaper 源码，在本地初始化独立的 Git 历史，把 `origin` 指向新仓库。这个仓库记录从“折腾笔记”初始化开始的修改。
+
+![主题初始化并提交后，新仓库的文件目录](@/assets/images/rebuilding-blog/07-repository-files.png)
 
 ## 3. 改成自己的博客
 
@@ -188,6 +191,30 @@ git push origin main
 ```
 
 Astro 会处理图片路径和尺寸。用 `pnpm dev` 预览正文，用 `pnpm build` 后的 `pnpm preview` 检查全文搜索。
+
+## 实际发布验证
+
+两种入口都做了真实操作，没有只检查配置文件。
+
+**本地推送：** 初始化提交 `87c79dc` 推送到 `main`，自动触发[第一次工作流](https://github.com/zhangzongyu00/field-notes/actions/runs/42993066195)。`build` 和 `deploy` 都成功，随后线上首页和首篇文章可以打开。这次运行总耗时 49 秒，后续耗时以实际运行结果为准。
+
+![本地推送触发的首次 Actions 构建与部署都成功](@/assets/images/rebuilding-blog/08-first-deployment-success.png)
+
+![首次部署后的线上折腾笔记首页](@/assets/images/rebuilding-blog/09-live-blog-homepage.png)
+
+**网页提交：** 在 Safari 打开 GitHub 的 `about.md` 编辑器，添加“持续更新”段落，点击 **Commit changes**，选择直接提交到 `main`。
+
+![在 Safari 的 GitHub 编辑器里修改关于页](@/assets/images/rebuilding-blog/10-edit-about-in-github.png)
+
+![提交窗口中选择直接提交到 main](@/assets/images/rebuilding-blog/11-commit-directly-to-main.png)
+
+网页生成提交 `2eb95d2`，自动触发[第二次工作流](https://github.com/zhangzongyu00/field-notes/actions/runs/42993770224)。发布后检查关于页中的新段落，确认网页编辑也进入了同一条自动发布流程。
+
+![网页提交自动触发的第二次 Actions 发布成功](@/assets/images/rebuilding-blog/12-browser-update-deployment-success.png)
+
+![网页提交后的线上关于页出现持续更新段落](@/assets/images/rebuilding-blog/13-live-about-after-browser-edit.png)
+
+线上还检查了中文全文搜索、手机菜单、明暗切换、文章图片、RSS、站点地图和内部链接。中文搜索“公众号”能够找到本篇文章，页面没有脚本错误。
 
 ## 7. 作为公众号和小红书的唯一源头
 

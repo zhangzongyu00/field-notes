@@ -1,0 +1,52 @@
+# 正文稿
+
+标题：重新搭博客，每次提交自动更新
+
+最近重新搭了一个自己的博客，叫“折腾笔记”。
+
+想记录技术实践和好玩的工具，也方便以后整理到公众号、小红书。我的做法是：完整文章先留在一个 Git 仓库里，平台内容从同一份母稿改编。
+
+这次用的是 Astro + AstroPaper + GitHub Pages。
+
+操作分五步：
+
+1️⃣ 看真实主题演示，选 AstroPaper。文章列表、搜索、标签、归档和明暗模式都有。
+
+2️⃣ 新建公开仓库 field-notes，放主题源码、Markdown 文章和截图。
+
+3️⃣ 改中文、名称和时区。项目站点要配置 `/field-notes` 前缀，避免图片和链接找不到。
+
+4️⃣ Pages 的 Source 选 GitHub Actions。工作流监听 main 分支，提交后自动构建并发布。
+
+5️⃣ 以后网页编辑并提交、本地 commit + push，都走这条发布流程。只保存文件不会更新。
+
+我的目录约定：
+
+📄 posts：完整文章母稿
+🖼 images/文章标识：原始截图
+📦 distribution/文章标识：公众号、小红书改编稿
+
+文件名保持稳定，分类先用标签，不急着搞复杂目录。
+
+“唯一源头”也有一个边界：博客更新后，已经发出去的平台内容不会自动更新。更正先回母稿，再同步平台稿。
+
+适合想写技术笔记、工具体验，又想保留完整内容和修改历史的人。配图就是这次实际操作记录。
+
+#个人博客 #GitHubPages #技术笔记 #效率工具 #折腾记录
+
+---
+
+# 配图顺序与图中文字
+
+发布前按当前编辑器要求处理图片和篇幅；保留真实操作截图。
+
+| 图 | 来源 | 配图文字 |
+| --- | --- | --- |
+| 1 | `09-live-blog-homepage.png` | 折腾笔记：提交文章，博客自动更新 |
+| 2 | `01-theme-preview-in-safari.png` | 先看演示，再选主题 |
+| 3 | `04-repository-created.png` | 新建独立仓库 field-notes |
+| 4 | `05-pages-source-github-actions.png` | Pages 发布来源：GitHub Actions |
+| 5 | `08-first-deployment-success.png` | 构建成功 → 部署上线 |
+| 6 | `11-commit-directly-to-main.png` | 网页提交和本地 push 都能自动更新 |
+
+图片位于 `../../src/assets/images/rebuilding-blog/`。图中文字是排版建议；不要把它当作软件界面的原始文字。

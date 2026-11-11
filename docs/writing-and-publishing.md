@@ -21,6 +21,15 @@
 git clone https://github.com/zhangzongyu00/field-notes.git
 ```
 
+克隆公开仓库不需要写入权限。首次在一台电脑推送时，需要给终端授权；Safari 登录不会自动让终端登录。可以用 GitHub CLI 登录并按需配置 Git 的认证：
+
+```bash
+gh auth login
+gh auth setup-git
+```
+
+当前搭建已完成 CLI 授权。若本机普通 `git push` 仍提示认证，可运行第二条命令。它会设置 Git 的凭据助手；搭建过程中使用了仅本次命令生效的助手，没有修改已有 Git 配置。
+
 在仓库目录运行（不要对已有未提交工作直接覆盖）：
 
 ```bash
