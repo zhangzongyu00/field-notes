@@ -89,16 +89,25 @@ const rssHref = getAssetPath("rss.xml");
     -->
     <script is:inline>
       (function () {
-        const stored = localStorage.getItem("theme");
+        let preference = "system";
+        try {
+          const stored = localStorage.getItem("theme-preference");
+          if (stored === "light" || stored === "dark") preference = stored;
+        } catch {
+          // Use system preference when browser storage is restricted.
+        }
         const prefersDark = window.matchMedia(
           "(prefers-color-scheme: dark)"
         ).matches;
-        const theme = stored ?? (prefersDark ? "dark" : "light");
+        const theme =
+          preference === "system"
+            ? prefersDark
+              ? "dark"
+              : "light"
+            : preference;
         const root = document.firstElementChild;
         root?.setAttribute("data-theme", theme);
         root?.classList.toggle("dark", theme === "dark");
-        // Expose value so theme.ts can skip re-detection.
-        window.__theme = { value: theme };
       })();
     </script>
 
